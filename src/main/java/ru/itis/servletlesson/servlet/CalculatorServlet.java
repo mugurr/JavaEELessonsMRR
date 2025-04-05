@@ -44,8 +44,6 @@ public class CalculatorServlet extends HttpServlet {
                 break;
         }
 
-
-
         PrintWriter out = resp.getWriter();
 
         out.println("<html><body");
