@@ -7,12 +7,20 @@
     <body>
         <h1><%= "Hello World!" %>
         </h1>
-            <form action="/calculator" method="post">
+            <form action="/calculator" method="get">
                 <h1>Калькулятор</h1>
-                <input type="" id="email" name="email" required>
-                <a href="hello-servlet">Hello Servlet</a>
-            </form>
-        <br/>
 
+                <label for="value1">Первое значение</label>
+                <input type="text" id="value1" name="value1" required>
+
+                <label for="value1">Второе значение</label>
+                <input type="text" id="value2" name="value2" required>
+
+                <label for="operation1">Операция</label>
+                <input type="text" id="operation1" name="operation1" required>
+
+                <button type="submit">Посчитать</button>
+            </form>
+        <a href="hello-servlet">Hello Servlet</a>
     </body>
 </html>
