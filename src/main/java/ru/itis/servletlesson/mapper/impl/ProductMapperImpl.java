@@ -34,7 +34,7 @@ public class ProductMapperImpl implements ProductMapper {
                         .description(product.getDescription())
                         .quantity(product.getQuantity())
 //                        .image(ImageUtils.encodeToBase64(product.getImage()))
-//                        .category(product.getCategories())
+                        .category(product.getCategories())
 //                        .isFavorite(product.isFavorite())
                         .build())
                 .collect(Collectors.toList());

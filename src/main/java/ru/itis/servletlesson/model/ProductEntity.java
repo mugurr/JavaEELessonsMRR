@@ -2,6 +2,8 @@ package ru.itis.servletlesson.model;
 
 import lombok.*;
 
+import java.util.List;
+
 @Data
 @Builder
 @ToString
@@ -14,4 +16,5 @@ public class ProductEntity {
     double price;
     int quantity;
     byte[] image;
+    private List<CategoryEntity> categories;
 }

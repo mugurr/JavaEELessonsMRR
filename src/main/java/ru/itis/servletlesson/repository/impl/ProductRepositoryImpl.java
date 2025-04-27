@@ -9,6 +9,7 @@ import ru.itis.servletlesson.dto.request.CategoryRequest;
 import ru.itis.servletlesson.mapper.ProductMapper;
 import ru.itis.servletlesson.mapper.impl.ProductMapperImpl;
 import ru.itis.servletlesson.model.ProductEntity;
+import ru.itis.servletlesson.repository.CategoryRepository;
 import ru.itis.servletlesson.repository.ProductRepository;
 
 import java.sql.PreparedStatement;
@@ -28,12 +29,20 @@ public class ProductRepositoryImpl implements ProductRepository {
 
     private static final String SQL_INSERT_PRODUCT = "insert into products (name, description, price, image) values (?, ?, ?, ?)";
 
-    private final ProductMapper productMapper = new ProductMapperImpl();
+    private final CategoryRepository categoryRepository;
+
+    private final ProductMapper productMapper;
 
     @Override
+//    public List<ProductEntity> getAllProducts(Long userId) {
     public List<ProductEntity> getAllProducts() {
 
         List<ProductEntity> products = jdbcTemplate.query(SQL_SELECT_ALL_PRODUCTS, productMapper);
+
+        for (ProductEntity product : products) {
+            product.setCategories(categoryRepository.findCategoriesByProductId(product.getId()));
+//            product.setFavorite(favouritesRepository.isProductInFavourites(userId, product.getId()));
+        }
 
         return products;
     }
@@ -42,9 +51,9 @@ public class ProductRepositoryImpl implements ProductRepository {
     public Optional<ProductEntity> findProductById(Long id) {
         try {
             ProductEntity product = jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, productMapper, id);
-//            if (product != null) {
-//                product.setCategories(categoryRepository.findCategoryByProductId(id));
-//            }
+            if (product != null) {
+                product.setCategories(categoryRepository.findCategoriesByProductId(id));
+            }
             return Optional.ofNullable(product);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
@@ -66,9 +75,9 @@ public class ProductRepositoryImpl implements ProductRepository {
             }, holder);
             Long id = Objects.requireNonNull(holder.getKey()).longValue();
 
-//            if (product.getCategories() == null) {
-//                categoryRepository.saveProductCategories(id, category);
-//            }
+            if (product.getCategories() == null) {
+                categoryRepository.saveProductCategories(id, category);
+            }
 
             return findProductById(id);
         } catch (Exception e) {

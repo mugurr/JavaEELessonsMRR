@@ -8,6 +8,7 @@ import java.util.Optional;
 
 public interface ProductRepository {
 
+//    List<ProductEntity> getAllProducts(Long userId);
     List<ProductEntity> getAllProducts();
     Optional<ProductEntity> findProductById(Long id);
     Optional<ProductEntity> saveNewProduct(ProductEntity product, List<CategoryRequest> category);
