@@ -13,7 +13,6 @@ import ru.itis.servletlesson.repository.CategoryRepository;
 import ru.itis.servletlesson.repository.ProductRepository;
 
 import java.sql.PreparedStatement;
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 import java.util.Optional;

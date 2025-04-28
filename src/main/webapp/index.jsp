@@ -25,5 +25,6 @@
         <a href="products">Products</a>
         <a href="main">Main</a>
         <a href="signIn">SignIn</a>
+        <a href="signUp">SignIUp</a>
     </body>
 </html>
