@@ -22,9 +22,9 @@ public class CategoryMapperImpl implements CategoryMapper {
     @Override
     public ListCategoriesResponse toDto(List<CategoryEntity> entity) {
         List<CategoryResponse> categoryResponses = entity.stream()
-                .map(catgory -> CategoryResponse.builder()
-                        .id(catgory.getId())
-                        .name(catgory.getName())
+                .map(category -> CategoryResponse.builder()
+                        .id(category.getId())
+                        .name(category.getName())
                         .build())
                 .collect(Collectors.toList());
 
