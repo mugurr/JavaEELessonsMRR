@@ -36,7 +36,7 @@ public class CategoryRepositoryImpl implements CategoryRepository {
 
     private static final String SQL_SELECT_CATEGORIES_BY_PRODUCT_ID =
             "select c.id, c.name from category c " +
-                "join product_category pc on c.id = pc.product_category_id " +
+                "join product_category pc on c.id = pc.category_id " +
                 "where pc.product_id = ?";
 
     private final CategoryMapper categoryMapper;
