@@ -50,9 +50,11 @@ public class ProductRepositoryImpl implements ProductRepository {
     public Optional<ProductEntity> findProductById(Long id) {
         try {
             ProductEntity product = jdbcTemplate.queryForObject(SQL_SELECT_BY_ID, productMapper, id);
+
             if (product != null) {
                 product.setCategories(categoryRepository.findCategoriesByProductId(id));
             }
+
             return Optional.ofNullable(product);
         } catch (EmptyResultDataAccessException e) {
             return Optional.empty();
